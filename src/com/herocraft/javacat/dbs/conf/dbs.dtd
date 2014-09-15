@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+
+<!-- DTD for dbs -->
+<!ELEMENT dbs (db*)>
+<!ELEMENT db ( comment?, url, driver?, user?, password?, initial-connection-count?, maximum-connection-count?, 
+               database-pool?, transaction-isolation?, standalone-connection-allowed?, connection-properties?, 
+               connection-instructions?, prepared-queries?) >
+<!ATTLIST db id CDATA #REQUIRED>
+<!ELEMENT comment (#PCDATA) >
+<!ELEMENT url (#PCDATA) >
+<!ELEMENT driver (#PCDATA) >
+<!ELEMENT user (#PCDATA) >
+<!ELEMENT password (#PCDATA) >
+<!ELEMENT initial-connection-count (#PCDATA) >
+<!ELEMENT maximum-connection-count (#PCDATA) >
+<!ELEMENT database-pool (#PCDATA) >
+<!ELEMENT transaction-isolation (#PCDATA) >
+<!ELEMENT standalone-connection-allowed (#PCDATA) >
+<!ELEMENT connection-properties (property*) >
+<!ELEMENT connection-instructions (instruction*) >
+<!ELEMENT property (#PCDATA) >
+<!ELEMENT instruction (#PCDATA) >
+<!ATTLIST property key CDATA #REQUIRED>
+<!ELEMENT prepared-queries (query*) >
+<!ELEMENT query (#PCDATA) >
+<!ATTLIST query name CDATA #REQUIRED>

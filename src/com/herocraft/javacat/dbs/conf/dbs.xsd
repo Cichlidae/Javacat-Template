@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="dbs" type="Dbs"/>
+	<xsd:complexType name="Dbs">
+		<xsd:sequence>
+			<xsd:element name="db" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="comment" minOccurs="0" type="xsd:string"/>
+						<xsd:element name="url" type="xsd:string"/>
+						<xsd:element name="driver" minOccurs="0" type="xsd:string" default="sun.jdbc.odbc.JdbcOdbcDriver"/>
+						<xsd:element name="user" minOccurs="0" type="xsd:string"/>
+						<xsd:element name="password" minOccurs="0" type="xsd:string"/>
+						<xsd:element name="initial-connection-count" minOccurs="0" type="xsd:positiveInteger" default="1"/>
+						<xsd:element name="maximum-connection-count" minOccurs="0" type="xsd:positiveInteger" default="1"/>
+						<xsd:element name="database-pool" minOccurs="0" type="xsd:string"/>
+						<xsd:element name="transaction-isolation" minOccurs="0" default="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer">
+									<xsd:minInclusive value="0"/>
+								</xsd:restriction>							
+							</xsd:simpleType>						
+						</xsd:element>
+						<xsd:element name="standalone-connection-allowed" minOccurs="0" default="false">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="true"/>
+									<xsd:enumeration value="false"/>
+								</xsd:restriction>
+							</xsd:simpleType>						
+						</xsd:element>
+						<xsd:element name="connection-properties" minOccurs="0" type="ConnectionProperties"/>						
+						<xsd:element name="prepared-queries" minOccurs="0" type="PreparedQueries"/>
+						<xsd:element name="connection-instructions" minOccurs="0" type="ConnectionInstructions"/>					
+					</xsd:sequence>										
+					<xsd:attribute name="id" type="xsd:string" use="required"/>
+				</xsd:complexType>				
+			</xsd:element>		
+		</xsd:sequence>	
+	</xsd:complexType>
+	<xsd:complexType name="ConnectionProperties">
+		<xsd:sequence>
+			<xsd:element name="property" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="key" type="xsd:string" use="required"/>
+						</xsd:extension>	
+					</xsd:simpleContent>								
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PreparedQueries">
+		<xsd:sequence>
+			<xsd:element name="query" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="name" type="xsd:string" use="required"/>
+						</xsd:extension>					
+					</xsd:simpleContent>				
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ConnectionInstructions">
+		<xsd:sequence>
+			<xsd:element name="instruction" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>			
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
